@@ -1,0 +1,524 @@
+    <!--Pagina Principal -->
+
+
+<html  lang="en">
+
+<head>
+
+	<title>Consultorio | Odontologico</title>
+
+<!-- Librerias de Alertify-->
+  <link rel="stylesheet" type="text/css" href="alertifyjs/css/alertify.css">
+  <link rel="stylesheet" type="text/css" href="alertifyjs/css/themes/default.css">
+
+  <script  src="jquery-3.3.1.min.js"></script>
+  <script src="alertifyjs/alertify.js"></script>
+<!-- Librerias de Alertify /-->
+
+
+<meta  name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">  
+<meta charset="UTF-8">
+
+
+
+<!-- Último CSS compilado y minificado bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/index.css">
+
+<!-- icono de logo de pagina -->
+<link rel="shortcut icon"  href="img/sis.jpg">
+
+
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<!--Codigo ajax -->
+	<script>
+
+
+	function registrrse()
+	{
+		var uno=document.getElementById('imagen');
+		var dos=document.getElementById('formulario');
+  
+  			if(dos.style.display == 'none')
+  			{
+           uno.style.display = "none";
+           dos.style.display = 'block';
+     		  }
+
+       		
+    	else{
+        	 uno.style.display = 'block';
+         	dos.style.display = 'none';
+               	}   
+  
+	}
+
+</script>
+
+<script type="text/javascript">
+
+//Enviar datos al formulario de registro
+	function enviar()
+	{
+		var name1=document.getElementById('name1').value;
+		var name=document.getElementById('name').value;
+		var email=document.getElementById('email').value;
+		var name3=document.getElementById('name3').value;
+
+		$.ajax({
+
+			type: 'POST',
+			url: 'registro.php',
+			data: ('name1='+name1+'&name='+name+'&email='+email+'&name3='+name3),
+			success: function(respuesta)
+			{  
+        if(respuesta==2)
+        {
+          //alert("usuario ya registrado");
+          alertify.error('usuario ya registrado');
+        
+        }
+        else
+        {
+         //alert("registro exitoso!!!");
+          alertify.success('registro exitoso!!!'); 
+        
+          var name1=document.getElementById('name1').value="";
+          var name=document.getElementById('name').value="";
+          var email=document.getElementById('email').value="";
+          var name3=document.getElementById('name3').value="";
+       }      
+			}
+		})
+	}
+
+//Enviar datos al formulario de login 
+  function enviardatos()
+  {
+    var usuario=document.getElementById('usuario').value;
+    var contraseña=document.getElementById('contraseña').value;
+    
+    $.ajax({
+
+      type: 'POST',
+      url: 'login1.php',
+      data: ('usuario='+usuario+'&contraseña='+contraseña),
+      success:function(respuesta)
+      {
+        if(respuesta==4){
+         alertify.error('usted esta inactivo');  
+        //alert("usted esta inactivo");
+      }
+      if (respuesta==5){
+         alertify.error('datos incorrectos');
+      }
+      if (respuesta==1)
+      {
+       location.href ="pagina_adm.php";
+      }
+       if (respuesta==2)
+      {
+        
+        location.href ="pagina_doctor.php";
+        
+      }
+       if (respuesta==3)
+      {
+       location.href ="pagina_usuario.php";
+      }
+      }
+    })
+  }
+
+       </script>
+
+    </head>
+   <body>
+</style>
+
+
+<!--css de barra de navegacion y fondo de pantalla estilo de letras y tamaño -->
+
+<style>
+
+body {
+   
+     background: url('binding_light.png');
+      background-repeat: repeat;
+        font-family: "Amatic SC", Arial, Sans-serif;
+      font-size: 18px;
+}
+
+
+.navbar {
+  background-color: #11A8D4;
+}
+.navbar .navbar-brand {
+  color: #ecf6f3;
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+  color: #00c98f;
+}
+.navbar .navbar-text {
+  color: #ecf6f3;
+}
+.navbar .navbar-nav .nav-link {
+  color: #ecf6f3;
+  border-radius: .25rem;
+  margin: 0 0.25em;
+}
+.navbar .navbar-nav .nav-link:not(.disabled):hover,
+.navbar .navbar-nav .nav-link:not(.disabled):focus {
+  color: #00c98f;
+}
+.navbar .navbar-nav .nav-item.active .nav-link,
+.navbar .navbar-nav .nav-item.active .nav-link:hover,
+.navbar .navbar-nav .nav-item.active .nav-link:focus,
+.navbar .navbar-nav .nav-item.show .nav-link,
+.navbar .navbar-nav .nav-item.show .nav-link:hover,
+.navbar .navbar-nav .nav-item.show .nav-link:focus {
+  color: #00c98f;
+  background-color: #f4eff6;
+}
+.navbar .navbar-toggle {
+  border-color: #f4eff6;
+}
+.navbar .navbar-toggle:hover,
+.navbar .navbar-toggle:focus {
+  background-color: #f4eff6;
+}
+.navbar .navbar-toggle .navbar-toggler-icon {
+  color: #ecf6f3;
+}
+.navbar .navbar-collapse,
+.navbar .navbar-form {
+  border-color: #ecf6f3;
+}
+.navbar .navbar-link {
+  color: #ecf6f3;
+}
+.navbar .navbar-link:hover {
+  color: #00c98f;
+}
+
+@media (max-width: 575px) {
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ecf6f3;
+  }
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #00c98f;
+  }
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #00c98f;
+    background-color: #f4eff6;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ecf6f3;
+  }
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #00c98f;
+  }
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #00c98f;
+    background-color: #f4eff6;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ecf6f3;
+  }
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #00c98f;
+  }
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #00c98f;
+    background-color: #f4eff6;
+  }
+}
+
+@media (max-width: 1199px) {
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ecf6f3;
+  }
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #00c98f;
+  }
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #00c98f;
+    background-color: #f4eff6;
+  }
+}
+
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
+  color: #ecf6f3;
+}
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+  color: #00c98f;
+}
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+  color: #00c98f;
+  background-color: #33CAFF;
+}
+</style>
+
+
+
+
+
+ <!-- BARRA DE NAVEGACION Y LOGIN -->
+
+<div class="container-fluid">
+	<div class="col-md-offset-2">
+		  <nav class="navbar bg-primary navbar-fixed-top">
+         <div class="container">
+           <div class="navbar-header">
+                <img src="img/card4.png">            
+           </div>
+               <center>
+                 <div class="navbar-collapse collapse" id="navbar-main">            
+                   <form class="navbar-form navbar-right" method="POST" action="login1.php">
+                    <div class="form-group">
+                        <h4 class=" glyphicon glyphicon-user" style="color:#FFF" ></h4>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="usuario" placeholder="usuario" id="usuario">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="contraseña" placeholder="contrasena" id="contraseña">
+                    </div>
+                                  
+
+                     <input type="button" class="btn btn-default" style="color:#11A8D4"  style="background:#FFFFFF" onclick="enviardatos();" value="ingresar" name="submit">    <h4 class="glyphicon glyphicon-ok-circle" ></h4>
+
+
+                    </form>
+                  </div>
+               </center>
+      </nav>
+   </div>
+</div>
+ 
+
+
+<!-- formulario de registro -->  
+
+<!-- Explicar require-->
+
+    
+	<div class="row ini" id="formulario" style="display:none;">
+
+	<div class="col-md-12">
+	
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: #020202}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
+<div class="bootstrap-iso">
+ <div class="container-fluid">
+  <div class="row">
+  	<br><br><br>
+  	<fieldset>
+  		<center><legend class="glyphicon glyphicon-pencil" >FORMULARIO DE REGISTRO</legend></center>
+      <br>
+   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 formulario">
+
+    <form method="post" action="registro.php" id="registrar"  name="formulario">
+     <div class="form-group ">
+      <label class="control-label " for="name">
+       Cedula
+      </label>
+      <input class="form-control" id="name" name="name" type="text" placeholder="Cedula" required/>
+     </div>
+     <div class="form-group ">
+      <label class="control-label " for="name1">
+       Nombre
+      </label>
+      <input class="form-control" id="name1" name="name1" type="text" placeholder="Nombre" required/>
+     </div>
+
+     <div class="form-group ">
+      <label class="control-label requiredField" for="email" required>
+       Correo
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" id="email" name="email" type="email" placeholder="Correo" required/>
+     </div>
+
+     <div class="form-group ">
+      <label class="control-label " for="name3">
+       Contraseña
+      </label>
+      <input class="form-control" id="name3" name="name3" type="password" placeholder="Contraseña" required/>
+     </div>
+
+     <div class="form-group">
+   
+      
+       <input class="btn btn-success " value="ENVIAR"  id="btn" style="background:#11A8D4"  type="button" onclick="javascript:enviar()">
+
+        <a href="index.html" class="btn btn-success"  style="background:#11A8D4" >REGRESAR</a>
+
+     
+     </div>
+
+    </form>
+   </div>
+   </fieldset>
+  </div>
+ </div>
+</div>
+</div>
+</div>
+
+
+
+ <!--Carrousel-->
+
+ 	<div class="row" id="imagen">
+		
+
+
+ <aside>
+   <div class="col-md-12  table-responsive ">
+      <div id="carousel-1" class="carousel slide" data-ride="carousel"> 
+      <!--indicadores-->
+         <ol class="carousel-indicators">
+          <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
+           <li data-target="#carousel-1" data-slide-to="1"></li>
+             <li data-target="#carousel-1" data-slide-to="2"></li>
+  
+    </ol>
+    <!--contenedor de los slide-->
+    <div class="carousel-inner" role="listbox">
+       
+   <div class="item active">
+        <img src="img/card2.jpg"   class="img-responsive" alt="">
+      <div class="carousel-caption hidden-xs hidden-sm">
+        <div class="carousel-caption hidden-xs hidden-sm" style="background:rgba(0,0,0,0.2);">
+        <h3  style="color:#fff">DOCTORES ESPECIALIZADOS </h3>
+        <p  style="color:#fff">Las especialidades son: cirugía bucal y maxilofacial, endodoncia, materiales dentales, odontología restauradora avanzada, odontopediatría, ortodoncia...  </p>
+        </div> 
+    
+      </div>
+    </div>
+       
+     
+      <div class="item ">
+      <img src="img/card1.jpg"   class="img-responsive" alt="">
+      <div class="carousel-caption hidden-xs hidden-sm">
+      <div class="carousel-caption hidden-xs hidden-sm" style="background:rgba(0,0,0,0.2);">
+        <h3  style="color:#fff">Odontología General</h3>
+        <p  style="color:#fff">La Odontología General es el canal o puerta de entrada del paciente... </p>
+      </div> 
+
+
+      </div>
+      </div>
+      
+
+      <div class="item ">
+        <img src="img/card3.jpg"  class="img-responsive" alt="">
+      <div class="carousel-caption hidden-xs hidden-sm">
+       <div class="carousel-caption hidden-xs hidden-sm" style="background:rgba(0,0,0,0.2);">
+        <h3  style="color:#fff">Ortodoncia</h3>
+        <p  style="color:#fff">La Ortodoncia es una especialidad de la Odontología que se encarga de la a alineación de los dientes  </p>
+      </div> 
+    
+      </div>
+      </div>   
+      </div>
+      </div>
+       
+   
+    <!--controles-->
+    <a href="#carousel-1" class="left carousel-control" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a href="#carousel-1" class="right carousel-control" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+     <span class="sr-only">Siguiente</span>
+
+    </a>
+
+	</div>
+
+
+
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<!-- BOTON PARA ACCDER AL FORMULARIO DE REGISTRO -->
+
+			<center><button type="submit" class="btn btn-success btn-lg" onclick="registrrse();"  style="background:#11A8D4" value="registrrse">REGISTRARSE</button> <h4 class="glyphicon glyphicon-pencil"></h4></center>
+
+
+
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+	</div>
+</div>
+</div>
+
+
+</body>
+
+
+<br>
+
+
+
+<!-- a qui se incluye el pie de pagina-->
+<div class="navbar navbar-default navbar-fixed-bottom">
+    
+    <div class="container">
+
+
+      <p class="navbar-text pull-left" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &copy <?php echo date('Y');?> - Clinica odontologica.
+          
+      </p>
+
+   </div>
+
+</div>
+
+
+<!--googleMaps-->
+
+ <section class="mapa">
+
+
+  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d63636.108387662374!2d-75.70125828643958!3d4.547750485516564!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xda9d351343f7dd9e!2sDentisalud+Armenia!5e0!3m2!1ses-419!2sco!4v1537552071838" width="1170" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+          
+        </section>
+<br><br>
+
+
+  <!-- Libreria dejQuery y Bootstrap.js -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</html>
+
+

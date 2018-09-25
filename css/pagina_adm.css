@@ -1,0 +1,56 @@
+#menu{
+
+	min-height: 100%;
+	background-color: black;
+	position: fixed;
+}
+
+.menu{
+
+	margin-top: 150px;
+}
+
+#banner{
+
+	min-height: 100%;
+	display: block;
+}
+
+#titulo{
+
+	background-color: black;
+	min-height: 150px;
+
+}
+
+#activar{
+
+	margin-top: 150px;
+	display: none;
+}
+
+#novedades{
+
+	margin-top: 20px;
+	display: none;
+}
+
+#formulario{
+
+	margin-top: 100px;
+	display: none;
+}
+
+#uno{
+
+	margin-top: 100px;
+	display: none;
+}
+
+#seis{
+	margin-top: 200px;
+	display: none;
+}
+
+
+
