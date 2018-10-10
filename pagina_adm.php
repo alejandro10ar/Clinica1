@@ -602,14 +602,6 @@ h1 {
 
 
 
-<!-- a qui se incluye el pie de pagina-->
-  <?php
-  include("footer.php");
-  ?>
-
-
-
-
 
 <!--REGISTRAR USUARIOS-->
 <div class="bootstrap-iso formulario   col-sm-6 col-md-6  col-md-offset-4" id="formulario">
@@ -715,8 +707,10 @@ h1 {
 
 
 
+
 <!--ACTIVAR O DESACTIVAR USUARIOS-->
-<div class="bootstrap-iso formulario  col-sm-6 col-md-6  col-md-offset-4" id="activar">
+<div class="bootstrap-iso formulario  col-sm-6 col-md-6  col-md-offset-3" id="activar">
+
  <div class="container-fluid">
   <div class="row">
     
@@ -763,8 +757,15 @@ h1 {
    </div>
    </fieldset>
   </div>
- </div>
+ </div>  
+
+
 </div>
+
+
+
+
+
 
 
 <!-- Incapacidad medica -->
@@ -1115,7 +1116,7 @@ $entrar= $con -> query("SELECT id,fecha,tipo,estado,hora,doctor,cedula FROM cita
 
 
 
-
+  
 
 
 
@@ -1180,7 +1181,13 @@ echo "<table class='table table-bordered table-hover table-responsive'>
     <th><form>Actualizar</form></th> 
    
 
+
+
 </tr>";
+
+
+
+
 
 
 
@@ -1237,20 +1244,11 @@ $entrar= $con -> query("SELECT cedula,nombre,rol,correo,contrasena,estado,fecha_
           
            <span class="glyphicon glyphicon-ok-circle" ></span>  </button>
     
-
-
-
-
       </form>
 
 
-
-
-
         </th>
-
-      
-
+  
 
   </tr>
 
@@ -1295,6 +1293,113 @@ if($_POST)
  </div>
 </div>
 </div>
+
+
+
+
+  <div class="row">
+
+
+
+
+
+    <?php
+
+    $x=0;
+
+
+
+ // include "conexion_sql.php";
+
+  include_once("conexion_sql.php");
+
+  $con=conectar();
+
+
+?>
+
+<div class="container">
+
+  <?php
+
+//GENERAR TABLA
+
+echo "<table class='table table-bordered table-hover table-responsive'> 
+
+<tr class='btn-default'>
+
+   <th><form>cedula</form></th> 
+
+     <th><form>nombre</form></th> 
+     
+      <th><form>rol</form></th> 
+ 
+      <th><form>correo</form></th> 
+    
+     <th><form>contraseña</form></th> 
+    
+    <th><form>estado</form></th> 
+
+   <th><form>fecha afiliado</form></th> 
+
+
+   
+
+</tr>";
+
+
+
+
+//HACER CONSULTA Y RECIVIR DATOS
+$entrar= $con -> query(" SELECT cedula,nombre,rol,correo,contrasena,estado,fecha_registro FROM usuarios WHERE estado = 'inactivo'");
+
+       while ($row = mysqli_fetch_row($entrar))
+
+            foreach ($row as $espacios){
+
+            if($row[0]!=$x){
+
+                $x=$row[0];
+
+?>
+
+ <tr class="btn-primary" style="background:#11A8D4" >
+
+    <td><?php echo"$row[0]" ?></td>
+    <td><?php echo"$row[1]" ?></td>
+   
+    <td><?php echo"$row[2]" ?></td>
+  
+    <td><?php echo"$row[3]" ?></td>
+
+    <td><?php echo"$row[4]" ?></td>  
+
+    <td> <?php echo"$row[5]" ?> </td>
+
+    <td> <?php echo"$row[6]" ?> </td>
+
+
+  </tr>
+ 
+
+<?php
+
+}
+}
+
+
+
+?>
+
+
+<center> <h1  class="glyphicon glyphicon-pencil" style="color:#11A8D4">Usuarios en espera de activacion</h1>  </center>
+
+
+   </div>
+  </div>
+
+
+
 
 <!--librerias de app-->
 
